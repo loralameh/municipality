@@ -11,7 +11,7 @@ const ContactSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "User",
       required: [
-        true,
+        false,
         "Please provide the municipality Member who replyed to this form",
       ],
     },
@@ -22,11 +22,6 @@ const ContactSchema = new mongoose.Schema(
     body: {
       type: String,
       required: true,
-    },
-    type: {
-      type: String,
-      required: true,
-      enum: ["suggestion", "complain"],
     },
 
     answer: {

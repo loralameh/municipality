@@ -31,6 +31,7 @@ const municipalityServiceRouter = require("./routes/municipalityService");
 const applicationRouter = require("./routes/application");
 const municipalityRouter = require("./routes/municipality");
 const electricityBillRouter = require("./routes/eletricityBill");
+const contactUsRouter = require("./routes/contactUs");
 // error handler
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
@@ -61,6 +62,7 @@ app.use("/api/service-category", serviceCategoryRouter);
 app.use("/api/application", authenticateUser, applicationRouter);
 app.use("/api/municipality", municipalityRouter);
 app.use("/api/bills/electricity", authenticateUser, electricityBillRouter);
+app.use("/api/contact-us", authenticateUser, contactUsRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
