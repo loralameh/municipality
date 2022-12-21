@@ -15,11 +15,8 @@ const ContactSchema = new mongoose.Schema(
         "Please provide the municipality Member who replyed to this form",
       ],
     },
-    title: {
-      type: String,
-      required: true,
-    },
-    body: {
+
+    message: {
       type: String,
       required: true,
     },
