@@ -15,6 +15,8 @@ const rateLimiter = require("express-rate-limit");
 const express = require("express");
 const app = express();
 
+const fileUpload = require("express-fileupload");
+//database
 const connectDB = require("./db/connect");
 const authenticateUser = require("./middleware/authentication");
 const authenticateadmin = require("./middleware/adminAuthentication");
@@ -44,6 +46,7 @@ app.use(
   })
 );
 app.use(express.json());
+app.use(fileUpload());
 app.use(helmet());
 app.use(cors());
 app.use(xss());

@@ -3,6 +3,13 @@ const { StatusCodes } = require("http-status-codes");
 const { BadRequestError, NotFoundError } = require("../errors");
 
 const getAllServiceCategories = async (req, res) => {
+  if (req.query.source) {
+    const categories = await ServiceCategory.find({
+      serviceSource: req.query.source,
+    });
+    res.status(StatusCodes.OK).json({ categories });
+    return;
+  }
   const categories = await ServiceCategory.find({});
   res.status(StatusCodes.OK).json({ categories });
 };
