@@ -4,8 +4,8 @@ const { BadRequestError, NotFoundError } = require("../errors");
 
 //non-protected rout for all published services by all users
 const getAllMunicipalityServices = async (req, res) => {
-  const services = await MunicipalityService.find({});
-  res.status(StatusCodes.OK).json({ services });
+  const services = await MunicipalityService.find({}).populate(["category"]);
+  res.status(StatusCodes.OK).json(services);
 };
 
 const getMunicipalityService = async (req, res) => {
@@ -19,13 +19,13 @@ const getMunicipalityService = async (req, res) => {
   if (!service) {
     throw new NotFoundError(`No service with id ${serviceId}`);
   }
-  res.status(StatusCodes.OK).json({ service });
+  res.status(StatusCodes.OK).json(service);
 };
 
 const createMunicipalityService = async (req, res) => {
   req.body.createdBy = req.user.userId;
   const service = await MunicipalityService.create(req.body);
-  res.status(StatusCodes.CREATED).json({ service });
+  res.status(StatusCodes.CREATED).json(service);
 };
 
 const updateMunicipalityService = async (req, res) => {
@@ -41,7 +41,7 @@ const updateMunicipalityService = async (req, res) => {
   if (!service) {
     throw new NotFoundError(`No service with id ${serviceId}`);
   }
-  res.status(StatusCodes.OK).json({ service });
+  res.status(StatusCodes.OK).json(service);
 };
 
 const deleteMunicipalityService = async (req, res) => {

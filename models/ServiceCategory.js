@@ -19,6 +19,15 @@ const ServiceCategorySchema = new mongoose.Schema({
     ref: "User",
     required: [true, "Please provide user"],
   },
+  image: {
+    type: String,
+    required: false,
+    default: "http://i.stack.imgur.com/34AD2.jpg",
+  },
+  description: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("ServiceCategory", ServiceCategorySchema);
