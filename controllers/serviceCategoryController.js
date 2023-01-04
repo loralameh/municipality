@@ -7,11 +7,11 @@ const getAllServiceCategories = async (req, res) => {
     const categories = await ServiceCategory.find({
       serviceSource: req.query.source,
     });
-    res.status(StatusCodes.OK).json({ categories });
+    res.status(StatusCodes.OK).json(categories);
     return;
   }
   const categories = await ServiceCategory.find({});
-  res.status(StatusCodes.OK).json({ categories });
+  res.status(StatusCodes.OK).json(categories);
 };
 
 const getServiceCategory = async (req, res) => {
@@ -26,13 +26,13 @@ const getServiceCategory = async (req, res) => {
   if (!category) {
     throw new NotFoundError(`No category with id ${categoryId}`);
   }
-  res.status(StatusCodes.OK).json({ category });
+  res.status(StatusCodes.OK).json(category);
 };
 
 const createServiceCategory = async (req, res) => {
   req.body.createdBy = req.user.userId;
   const category = await ServiceCategory.create(req.body);
-  res.status(StatusCodes.CREATED).json({ category });
+  res.status(StatusCodes.CREATED).json(category);
 };
 
 const updateServiceCategory = async (req, res) => {
@@ -53,7 +53,7 @@ const updateServiceCategory = async (req, res) => {
   if (!category) {
     throw new NotFoundError(`No category with id ${categoryId}`);
   }
-  res.status(StatusCodes.OK).json({ category });
+  res.status(StatusCodes.OK).json(category);
 };
 
 const deleteServiceCategory = async (req, res) => {
