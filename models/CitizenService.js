@@ -37,7 +37,15 @@ const CitizenServiceSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  linkedInLink: {
+  linkedinLink: {
+    type: String,
+    required: false,
+  },
+  githubLink: {
+    type: String,
+    required: false,
+  },
+  twitterLink: {
     type: String,
     required: false,
   },
@@ -45,11 +53,17 @@ const CitizenServiceSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  pictureGallery: {
+  whatsAppLink: {
     type: String,
     required: false,
-    default: "http://i.stack.imgur.com/34AD2.jpg",
   },
+  pictureGallery: [
+    {
+      type: String,
+      required: false,
+      default: "http://i.stack.imgur.com/34AD2.jpg",
+    },
+  ],
   servicePhoneNumber: {
     type: String,
     required: false,

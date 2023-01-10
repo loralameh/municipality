@@ -5,7 +5,6 @@ const { BadRequestError, NotFoundError } = require("../errors");
 //non-protected rout for all published services by all users
 const getAllMunicipalityServices = async (req, res) => {
   const filter = req.query.category ? { category: req.query.category } : {};
-  console.log(filter);
   const services = await MunicipalityService.find(filter).populate([
     "category",
   ]);
