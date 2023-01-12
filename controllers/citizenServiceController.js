@@ -23,13 +23,13 @@ const getAllUserCitizenServices = async (req, res) => {
 
 const getCitizenService = async (req, res) => {
   const {
-    user: { userId },
+    // user: { userId },
     params: { id: serviceId },
   } = req;
 
   const service = await CitizenService.findOne({
     _id: serviceId,
-    createdBy: userId,
+    // createdBy: userId,
   });
   // .populate("createdBy");
   if (!service) {

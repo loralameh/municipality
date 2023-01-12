@@ -23,7 +23,7 @@ router.route("/all").get(getAllCitizenServices);
 
 router
   .route("/:id")
-  .get(authenticateUser, getCitizenService)
+  .get(getCitizenService)
   .delete(authenticateUser, deleteCitizenService)
   .patch(authenticateUser, updateCitizenService);
 
