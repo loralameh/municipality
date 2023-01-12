@@ -4,40 +4,31 @@ const { BadRequestError, UnauthenticatedError } = require("../errors");
 
 const getProfile = async (req, res) => {
   const { userId } = req.user;
-  const profile = await User.findById(userId);
+  const profile = await User.findById(userId).select("-password");
   if (!profile) {
     throw new UnauthenticatedError("Invalid Credentials");
   }
-  res.status(StatusCodes.OK).json({ profile });
+  res.status(StatusCodes.OK).json(profile);
 };
 
 const updateProfile = async (req, res) => {
   const { userId } = req.user;
 
-  const { name, phoneNumber, education, career } = req.body;
+  const { name, phoneNumber, education, career, address } = req.body;
 
   const profile = await User.findByIdAndUpdate(
     { _id: userId },
-    { name, phoneNumber, education, career },
+    { name, phoneNumber, education, career, address },
     {
       new: true,
       runValidators: true,
     }
-  );
+  ).select("-password");
   if (!profile) {
     throw new UnauthenticatedError("Invalid Credentials");
   }
-  const updatedProfile = {
-    name: profile.name,
-    _id: profile.id,
-    role: profile.role,
-    email: profile.email,
-    image: profile.image,
-    phoneNumber: profile.phoneNumber,
-    career: profile.career,
-    education: profile.education,
-  };
-  res.status(StatusCodes.OK).json({ profile: updatedProfile });
+
+  res.status(StatusCodes.OK).json(profile);
 };
 
 const deleteProfile = async (req, res) => {
